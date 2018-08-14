@@ -9,7 +9,7 @@ function draw(data){
     app.innerHTML =
     `
     <div id="error"></div>
-    <button onclick='app.controllers.nasa.getArticle()'>
+    <button onclick='app.controllers.nasa.getData()'>
     Get Articles
     </button>
     <div id="article"></div>
@@ -30,6 +30,14 @@ function drawArticles(data){
         <div>
         ${data.date}
         </div>
+
+        <div>
+        ${data.explanation}
+        </div>
+
+        <img src="${data.photo}">
+        
+        </div>
         `
     
     articlesElem.innerHTML = template 
@@ -41,8 +49,8 @@ export default class NasaController{
         console.log("hello from NasaController")
         draw()
     }
-getArticle() {
-    nasaService.getArticle(drawArticles, drawError)
+getData() {
+    nasaService.getData(drawArticles, drawError)
 }
 
 }
