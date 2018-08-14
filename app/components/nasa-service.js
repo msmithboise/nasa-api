@@ -10,7 +10,7 @@ getArticle(draw, drawError) {
     console.log("hello from NasaService")
     fetch('https://api.nasa.gov/planetary/apod?api_key=Trq8EGLRbZZWwRVqYUNWkinr4ulR2Ajlgh5qRPoV')
     .then(res => res.json())
-    .then(draw)
+    .then(res => draw(new Apod(res)))
     .catch(drawError)
 }
 

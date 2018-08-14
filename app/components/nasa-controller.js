@@ -1,4 +1,5 @@
 import NasaService from "./nasa-service.js"
+import Apod from "../models/Apod.js";
 
 const nasaService = new NasaService
 let app = document.getElementById('app')
@@ -20,6 +21,20 @@ function drawError(error){
     document.getElementById('error').innerHTML = error.message
 }
 
+function drawArticles(data){
+    console.log(data)
+    let articlesElem = document.getElementById("article")
+    let template = 
+    
+        `
+        <div>
+        ${data.date}
+        </div>
+        `
+    
+    articlesElem.innerHTML = template 
+}
+
 
 export default class NasaController{
     constructor() {
@@ -27,7 +42,7 @@ export default class NasaController{
         draw()
     }
 getArticle() {
-    nasaService.getArticle(draw, drawError)
+    nasaService.getArticle(drawArticles, drawError)
 }
 
 }
