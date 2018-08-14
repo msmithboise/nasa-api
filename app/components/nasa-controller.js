@@ -4,10 +4,10 @@ import Apod from "../models/Apod.js";
 const nasaService = new NasaService
 let app = document.getElementById('app')
 
-function draw(data){
+function draw(data) {
     console.log(data)
     app.innerHTML =
-    `
+        `
     <div id="error"></div>
     <button onclick='app.controllers.nasa.getData()'>
     Get Articles
@@ -16,41 +16,42 @@ function draw(data){
     `
 }
 
-function drawError(error){
+function drawError(error) {
     console.log(error)
     document.getElementById('error').innerHTML = error.message
 }
 
-function drawArticles(data){
+function drawArticles(data) {
     console.log(data)
     let articlesElem = document.getElementById("article")
-    let template = 
-    
+    let template =
+
         `
-        <div>
+        <div class="container-fluid">
         ${data.date}
-        </div>
-
-        <div>
-        ${data.explanation}
-        </div>
-
+        
         <img src="${data.photo}">
         
+        <div class="row"><p>
+        ${data.explanation}
+        </p></div>
+        
+
+
         </div>
         `
-    
-    articlesElem.innerHTML = template 
+
+    articlesElem.innerHTML = template
 }
 
 
-export default class NasaController{
+export default class NasaController {
     constructor() {
         console.log("hello from NasaController")
         draw()
     }
-getData() {
-    nasaService.getData(drawArticles, drawError)
-}
+    getData() {
+        nasaService.getData(drawArticles, drawError)
+    }
 
 }
